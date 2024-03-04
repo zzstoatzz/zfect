@@ -31,7 +31,7 @@ pub const PrefectClient = struct {
     fn get_headers(alloc: std.mem.Allocator, api_key: []const u8) !http.Headers {
         var headers = http.Headers.init(alloc);
         try headers.append("Content-Type", "application/json");
-        var auth_header = try std.fmt.allocPrint(alloc, "Bearer {s}", .{api_key});
+        const auth_header = try std.fmt.allocPrint(alloc, "Bearer {s}", .{api_key});
         defer alloc.free(auth_header);
         try headers.append("Authorization", auth_header);
         return headers;
