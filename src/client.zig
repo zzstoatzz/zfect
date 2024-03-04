@@ -25,7 +25,7 @@ fn getErrorString(status: http.Status) ![]const u8 {
 pub const PrefectClient = struct {
     api_url: []const u8,
     api_key: []const u8,
-    alloc: Allocator = std.heap.page_allocator,
+    alloc: Allocator,
     headers: http.Headers,
 
     fn get_headers(alloc: std.mem.Allocator, api_key: []const u8) !http.Headers {
